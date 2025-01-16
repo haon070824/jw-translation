@@ -1,21 +1,15 @@
 <!DOCTYPE html>
-<html lang="ko">
+<html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>여호와의 증인 번역기</title>
-    <!-- CSS 파일 연결 -->
-    <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>실시간 번역</title>
 </head>
 <body>
-    <div class="container">
-        <h1>여호와의 증인 번역기</h1>
-        <p>일본어로 말하면 한국어로 번역됩니다.</p>
-        <button id="start-button">음성 입력 시작</button>
-        <textarea id="input-text" placeholder="인식된 일본어 텍스트" readonly></textarea>
-        <textarea id="translated-text" placeholder="번역된 한국어 텍스트" readonly></textarea>
-    </div>
-    <!-- JavaScript 파일 연결 -->
-    <script src="script.js"></script>
+  <h1>실시간 번역</h1>
+  <div id="result">여기에 번역 결과가 표시됩니다.</div>
+  <button id="start-btn">번역 시작</button>
+  <button id="stop-btn" disabled>중지</button>
+  <script src="script.js"></script>
 </body>
 </html>
