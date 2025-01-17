@@ -1,24 +1,101 @@
+/* 전체 배경 색상 */
 body {
     font-family: Arial, sans-serif;
-    margin: 20px;
+    margin: 0;
+    padding: 0;
     text-align: center;
+    background-color: #1e3a8a; /* 어두운 파란색 배경 */
+    color: #ffffff; /* 흰색 텍스트 */
 }
 
+/* 컨테이너 */
 .container {
     max-width: 600px;
-    margin: 0 auto;
+    margin: 50px auto;
+    padding: 20px;
+    background-color: #ffffff; /* 흰색 배경 */
+    border-radius: 15px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2); /* 더 짙은 그림자 효과 */
 }
 
+/* 제목 스타일 */
+h1 {
+    font-size: 28px;
+    color: #0d47a1; /* 진한 파란색 */
+}
+
+/* 설명 텍스트 */
+p {
+    font-size: 16px;
+    margin-bottom: 20px;
+    color: #333; /* 어두운 회색 */
+}
+
+/* 버튼 스타일 */
+button {
+    padding: 12px 25px;
+    font-size: 16px;
+    color: #ffffff;
+    background-color: #1565c0; /* 버튼 진한 파란색 */
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    margin: 10px;
+}
+
+button:hover {
+    background-color: #0d47a1; /* 버튼 호버 시 더 진한 파란색 */
+}
+
+button:disabled {
+    background-color: #546e7a; /* 버튼 비활성화 시 회색 계열 */
+    cursor: not-allowed;
+}
+
+/* 텍스트 영역 스타일 */
 textarea {
     width: 100%;
-    height: 150px;
     margin: 10px 0;
     resize: none;
     font-size: 16px;
+    border: 1px solid #1565c0; /* 진한 파란색 테두리 */
+    border-radius: 5px;
+    padding: 10px;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
 }
 
-button {
-    padding: 10px 20px;
-    font-size: 16px;
-    margin: 10px;
+/* 일본어 텍스트 영역 */
+#input-text {
+    height: 100px; /* 크기 줄임 */
+    background-color: #e3eaf7; /* 연한 회색 파랑 배경 */
+    color: #333;
+}
+
+/* 한국어 번역 텍스트 영역 */
+#translated-text {
+    height: 200px; /* 크기 키움 */
+    background-color: #dbe2f2; /* 중간 톤의 파랑 배경 */
+    color: #333;
+}
+
+/* 반응형 디자인 */
+@media (max-width: 768px) {
+    .container {
+        padding: 15px;
+    }
+
+    h1 {
+        font-size: 24px;
+    }
+
+    button {
+        font-size: 14px;
+        padding: 10px 20px;
+    }
+
+    textarea {
+        font-size: 14px;
+    }
 }
