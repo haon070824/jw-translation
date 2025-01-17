@@ -49,23 +49,43 @@ let recognition;
 function initSpeechRecognition() {
     if (!recognition) {
         recognition = new (window.SpeechRecognition || window.webkitSpeechRecognition)();
-        recognition.lang = "ja-JP";
+        recognition.lang = "ja-JP"; // 일본어 설정
+        recognition.continuous = true; // 긴 연설도 끊기지 않고 인식
+        recognition.interimResults = true; // 중간 결과 활성화
 
         recognition.onstart = () => {
             document.getElementById("input-text").value = "음성을 듣는 중...";
         };
 
         recognition.onresult = (event) => {
-            const japaneseText = event.results[0][0].transcript;
-            document.getElementById("input-text").value = japaneseText;
+            let interimText = ""; // 중간 텍스트 저장
+            let finalText = ""; // 최종 텍스트 저장
 
-            // 번역 호출
-            translateText(japaneseText);
+            // 중간 및 최종 텍스트 처리
+            for (let i = 0; i < event.results.length; i++) {
+                const transcript = event.results[i][0].transcript;
+                if (event.results[i].isFinal) {
+                    finalText += transcript; // 최종 텍스트
+                } else {
+                    interimText += transcript; // 중간 텍스트
+                }
+            }
+
+            // 중간 결과 표시
+            if (interimText) {
+                document.getElementById("input-text").value = `[중간 텍스트] ${interimText}`;
+            }
+
+            // 최종 결과 처리 및 번역 호출
+            if (finalText) {
+                document.getElementById("input-text").value = finalText;
+                translateText(finalText);
+            }
         };
 
         recognition.onend = () => {
             if (isListening) {
-                recognition.start(); // 다시 시작
+                recognition.start(); // 음성 인식 재시작
             }
         };
 
@@ -108,7 +128,8 @@ async function translateText(japaneseText) {
 
         // 신권 용어 변환
         for (const [term, translation] of Object.entries(customTerms)) {
-            translatedText = translatedText.replace(new RegExp(term, 'g'), translation);
+            const regex = new RegExp(term, "g"); // 정확한 단어 교체
+            translatedText = translatedText.replace(regex, translation);
         }
 
         document.getElementById("translated-text").value = translatedText;
